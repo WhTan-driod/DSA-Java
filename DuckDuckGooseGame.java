@@ -32,7 +32,7 @@ public class DuckDuckGooseGame {
         // Case 1: First player in the game
         if (head == null) {
             head = newPlayer;
-            head.next = head;       // Point to itself to create the circle
+            head.next = head;
             newPlayer.isIt = true;  // First player is automatically "it"
         } 
         // Case 2: Adding to existing circle
@@ -67,12 +67,7 @@ public class DuckDuckGooseGame {
         return null;    // Should never happen if game is properly initialized
     }
     
-    /**
-     * Changes who is "it" in the game.
-     * Sets the specified player as "it" and removes "it" status from all others.
-     * 
-     * @param newItPlayer The player who should become "it"
-     */
+    //changes the player who is "it"
     public void changeItPlayer(Player newItPlayer) {
         if (head == null) return;
         
@@ -84,10 +79,7 @@ public class DuckDuckGooseGame {
         } while (current != head);
     }
     
-    /**
-     * Displays the current state of the game circle.
-     * Shows all players in order with their "it" status.
-     */
+    //shows all players and indicates who is "it"
     public void displayCircle() {
         if (head == null) {
             System.out.println("No players in the game.");
@@ -105,12 +97,7 @@ public class DuckDuckGooseGame {
         System.out.println("(back to start)");
     }
     
-    /**
-     * Plays one complete round of Duck Duck Goose.
-     * The "it" player walks around the circle saying "duck" or "goose".
-     * When "goose" is said, that player chases the "it" player.
-     * The outcome determines who becomes "it" next.
-     */
+    //plays one round of the game
     public void playOneRound() {
         // Check if we have enough players to play
         if (playerCount < 3) {
@@ -166,14 +153,7 @@ public class DuckDuckGooseGame {
         simulateChase(itPlayer, goosePlayer);
     }
     
-    /**
-     * Simulates the chase that happens after "goose" is called.
-     * The goose player tries to catch the "it" player before they sit down.
-     * Randomly determines the winner for simplicity.
-     * 
-     * @param itPlayer The player who was "it" and is being chased
-     * @param goosePlayer The player who was chosen as "goose" and does the chasing
-     */
+    //simulates the chase between the "it" player and the "goose" player
     private void simulateChase(Player itPlayer, Player goosePlayer) {
         System.out.println(goosePlayer.name + " jumps up and chases " + itPlayer.name + "!");
         System.out.println("They run around the circle...");
@@ -191,7 +171,6 @@ public class DuckDuckGooseGame {
             // Goose player catches the "it" player
             System.out.println(goosePlayer.name + " catches " + itPlayer.name + "!");
             System.out.println(itPlayer.name + " stays 'it'!");
-            // itPlayer remains "it" (no change needed)
         }
     }
 }

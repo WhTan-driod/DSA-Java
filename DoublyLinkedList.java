@@ -1,5 +1,4 @@
-// Node class represents a single node in the doubly linked list.
-//Each node contains data and references to both next and previous nodes.
+//Node class represents a single node in the doubly linked list.
 class Node<T> {
     T data;
     Node<T> next;    
@@ -13,9 +12,7 @@ class Node<T> {
     }
 }
 
-// DoublyLinkedList class implements a doubly linked list data structure.
-//Maintains references to both head (first) and tail (last) nodes for efficient operations.
-
+//DoublyLinkedList class implements a doubly linked list data structure.
 public class DoublyLinkedList<T> {
     private Node<T> head;    // Points to the first node
     private Node<T> tail;    // Points to the last node
@@ -29,7 +26,7 @@ public class DoublyLinkedList<T> {
     }
     
     // Add node to the front of the list
-        public void addFront(T data) {
+    public void addFront(T data) {
         Node<T> newNode = new Node<>(data);
         
         // If list is empty, new node becomes both head and tail
