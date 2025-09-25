@@ -27,7 +27,7 @@ public class QueueList<T>
     //add to queue
     public void enqueue(T data)
     {
-        Node newNode = new Node<>(data);
+        Node<T> newNode = new Node<>(data);
         //Check if list queue is empty
         if(front == null)
         {
@@ -40,7 +40,7 @@ public class QueueList<T>
         //Add to end of queue
         else 
         {
-            Node temp = front;
+            Node<T> temp = front;
             while (temp.next != null){
                 temp = temp.next;
             }
@@ -73,7 +73,7 @@ public class QueueList<T>
     //List elements in queue
     public void listElements()
     {
-        Node temp = front;
+        Node<T> temp = front;
         while (temp != null){
             System.out.print(temp.data + "->");
             temp = temp.next;
@@ -91,7 +91,7 @@ public class QueueList<T>
         }
         else
         {
-            Node temp = front.next;
+            Node<T> temp = front;
             System.out.println(temp.data + " is first element");
         }
     }
