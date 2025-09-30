@@ -1,3 +1,4 @@
+//class to demonstrate a queue list using generics
 public class QueueList<T>
 {
     //fields
@@ -96,9 +97,20 @@ public class QueueList<T>
         }
     }
 
+    public void size()
+    {
+        System.out.println(size);
+    }
+
+    public boolean isEmpty()
+    {
+        return size == 0;
+    }
+
     public static void main(String[] args)
     {
         QueueList<Integer> list = new QueueList<Integer>();
+        System.out.println(list.isEmpty());
         list.first();
         list.enqueue(2);
         list.enqueue(4);
