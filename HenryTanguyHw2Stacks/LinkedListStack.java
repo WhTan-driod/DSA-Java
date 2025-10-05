@@ -56,6 +56,14 @@ public class LinkedListStack<T> {
         return size;
     }
 
+    public void listElements(){
+        Node<T> current = top;
+        while (current != null) {
+            System.out.println(current.data);
+            current = current.next;
+        }
+    }
+
     public static void main(String[] args) {
         //create new stack object
         LinkedListStack<Integer> stack = new LinkedListStack<>();
@@ -64,6 +72,7 @@ public class LinkedListStack<T> {
         stack.push(10);
         stack.push(20);
         stack.push(30);
+        stack.push(69420);
         
         //call stack methods
         System.out.println("Top element: " + stack.peek()); // 30
@@ -72,5 +81,6 @@ public class LinkedListStack<T> {
         System.out.println("Popped element: " + stack.pop()); // 30
         System.out.println("New top element: " + stack.peek()); // 20
         System.out.println("Stack size after pop: " + stack.size()); // 2
+        stack.listElements();
     }
 }
