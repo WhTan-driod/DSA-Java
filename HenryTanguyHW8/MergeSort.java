@@ -40,6 +40,15 @@ public class MergeSort
             arr[k++] = right[j++];
         }
     }
+
+    public static void averageTime(long[] arr)
+    {
+        long average=0;
+        for(long num : arr){
+            average += num;
+        }
+        System.out.println(average/arr.length);
+    }
     public static void main(String[] args) 
     {
         int[] arr = {38, 27, 43, 3, 9, 82, 10};
@@ -49,11 +58,37 @@ public class MergeSort
         System.out.println("Sorted array: " + Arrays.toString(arr));
         System.out.println("Execution time: " + (endTime - startTime) + " nanoseconds");
 
+        long[] runTimes = new long[5];
+
         // Test with a larger random array
-        int[] largeArr = new Random().ints(100000, 0, 100000).toArray();
+        for (int i = 0; i < 5; i++) 
+        {
+            int[] fiveK = new Random().ints(5000, 0, 100000).toArray();
+            startTime = nanoTime();
+            mergeSort(fiveK); 
+            endTime = nanoTime();
+            runTimes[i] = endTime - startTime;
+        }
+
+        System.out.print("average run time for 5,000 array: ");
+        averageTime(runTimes);
+
+        int[] tenK = new Random().ints(10000, 0, 100000).toArray();
         startTime = nanoTime();
-        mergeSort(largeArr); 
+        mergeSort(tenK); 
         endTime = nanoTime();
-        System.out.println("Execution time for large array: " + (endTime - startTime) + " nanoseconds");
+        System.out.println("Execution time for 10,000 array: " + (endTime - startTime) + " nanoseconds");
+
+        int[] fiftyK = new Random().ints(50000, 0, 100000).toArray();
+        startTime = nanoTime();
+        mergeSort(fiftyK); 
+        endTime = nanoTime();
+        System.out.println("Execution time for 50,000 array: " + (endTime - startTime) + " nanoseconds");
+
+        int[] hundredK = new Random().ints(100000, 0, 100000).toArray();
+        startTime = nanoTime();
+        mergeSort(hundredK); 
+        endTime = nanoTime();
+        System.out.println("Execution time for 100,000 array: " + (endTime - startTime) + " nanoseconds");
     }
 }
