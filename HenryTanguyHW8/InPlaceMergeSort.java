@@ -1,32 +1,78 @@
 public class InPlaceMergeSort {
-    public static void mergeSort(int[] arr, int left, int right) 
+
+    public static void mergeSort(int[] arr) 
     {
-        if (left < right) 
-        {
-            int mid = left + (right - left) / 2;
-            mergeSort(arr, left, mid);
-            mergeSort(arr, mid + 1, right);
-            merge(arr, left, mid, right);
-        }
+        inPlaceMergeSort(arr, 0, arr.length);
     }
 
-    public static void merge(int[] arr, int left, int mid, int right) 
+    private static void inPlaceMergeSort(int[] a, int left, int right) 
     {
-        int i = left, j = mid + 1;
-        while (i <= mid && j <= right) 
-        {
-            if (arr[i] <= arr[j]) 
+        if (right - left <= 1) return; //base case
+
+        //binary shift - same as - mid = (left + (right - left)) /2 without risk of overflow
+        int mid = (left + right) >>> 1;
+
+        inPlaceMergeSort(a, left, mid);
+        inPlaceMergeSort(a, mid, right);
+
+        inPlaceMerge(a, left, mid, right);
+    }
+
+    // In-place merge using rotations (O(1) space)
+    private static void inPlaceMerge(int[] a, int left, int mid, int right) 
+    {
+        int i = left;
+        int j = mid;
+
+        // While both halves have elements
+        while (i < j && j < right) 
             {
+
+            // Find first element in left half greater than first in right half
+            if (a[i] <= a[j]) 
+                {
                 i++;
-            } else 
+            } 
+            else 
             {
-                int temp = arr[j];
-                System.arraycopy(arr, i, arr, i + 1, j - i);
-                arr[i] = temp;
+                // Rotate block: [i .. j-1], j → inserted at i
+                rotateRight(a, i, j, j + 1);
+
+                // Update indices after rotation
                 i++;
-                mid++;
                 j++;
             }
         }
     }
+
+    // Rotate right by 1 position: [left .. mid-1], [mid .. right-1]
+    private static void rotateRight(int[] a, int left, int mid, int right) 
+    {
+        reverse(a, left, mid);
+        reverse(a, mid, right);
+        reverse(a, left, right);
+    }
+
+    private static void reverse(int[] a, int l, int r) 
+    {
+        r--;
+        while (l < r) 
+        {
+            int t = a[l];
+            a[l] = a[r];
+            a[r] = t;
+            l++;
+            r--;
+        }
+    }
+
+    // Test
+    public static void main(String[] args) 
+    {
+        int[] arr = {5, 2, 9, 1, 3, 7, 8, 4};
+        mergeSort(arr);
+
+        for (int x : arr) System.out.print(x + " ");
+    }
 }
+
