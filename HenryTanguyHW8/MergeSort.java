@@ -134,6 +134,8 @@ public class MergeSort
         long[] runTimes = new long[5];
 
         //In-Place vs. Not-in-place Merge-sort for 5k array size
+        //create an array of randomly generated integers and call sort method
+        //store each run time in separate array
         for (int i = 0; i < 5; i++) 
         {
             int[] fiveK = new Random().ints(5000, 0, 100000).toArray();
@@ -143,6 +145,7 @@ public class MergeSort
             runTimes[i] = endTime - startTime;
         }
 
+        //calculate average of 5 run times and display
         System.out.println("average run time for not-in-place merge-sort 5,000 array: " + averageTime(runTimes) + " nanoseconds");
 
         for (int i = 0; i < 5; i++) 
@@ -179,6 +182,7 @@ public class MergeSort
         }
 
         System.out.println("average run time for in-place merge-sort 10,000 array: " + averageTime(runTimes) + " nanoseconds");
+        //---------------------------------------------------------
 
         //In-Place vs. Not-in-place Merge-sort for 50k array size
         for(int i = 0; i < 5; i++) 
@@ -194,7 +198,7 @@ public class MergeSort
 
         for(int i = 0; i < 5; i++) 
         {
-            int[] fiftyK = new Random().ints(10000, 0, 100000).toArray();
+            int[] fiftyK = new Random().ints(50000, 0, 100000).toArray();
             startTime = nanoTime();
             InPlaceMergeSort.mergeSort(fiftyK); 
             endTime = nanoTime();
@@ -202,8 +206,9 @@ public class MergeSort
         }
 
         System.out.println("average run time for in-place merge-sort 50,000 array: " + averageTime(runTimes) + " nanoseconds");
+        //---------------------------------------------------------
 
-
+        //In-Place vs. Not-in-place Merge-sort for 50k array size
         for(int i = 0; i < 5; i++) 
         {
             int[] hundredK = new Random().ints(100000, 0, 100000).toArray();
